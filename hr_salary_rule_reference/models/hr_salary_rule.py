@@ -19,18 +19,17 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp import models, api
 
 
-class HrSalaryRule(orm.Model):
+class HrSalaryRule(models.Model):
     _inherit = 'hr.salary.rule'
 
-    def compute_rule(self, cr, uid, rule_id, localdict, context=None):
+    @api.multi
+    def compute_rule(self, localdict):
 
         # Add reference to the rule itself
-        localdict['rule_id'] = rule_id
-        localdict['rule'] = self.browse(cr, uid, rule_id, context=context)
+        localdict['rule_id'] = self.id
+        localdict['rule'] = self
 
-        return super(HrSalaryRule, self).compute_rule(
-            cr, uid, rule_id, localdict, context=context
-        )
+        return super(HrSalaryRule, self).compute_rule(localdict)
