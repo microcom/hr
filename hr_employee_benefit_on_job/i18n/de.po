@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-27 23:36+0000\n"
 "PO-Revision-Date: 2015-07-27 23:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-hr-7-0/language/fr/)\n"
+"Last-Translator: <>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-hr-7-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: hr_employee_benefit_on_job
 #: code:addons/hr_employee_benefit_on_job/models/hr_employee_benefit_rate.py:36
@@ -26,29 +26,29 @@ msgstr ""
 #. module: hr_employee_benefit_on_job
 #: view:hr.job:0 field:hr.job,benefit_line_ids:0
 msgid "Employee Benefits"
-msgstr "Avantages sociaux"
+msgstr ""
 
 #. module: hr_employee_benefit_on_job
 #: model:ir.model,name:hr_employee_benefit_on_job.model_hr_job
 msgid "Job Description"
-msgstr "Description du poste"
+msgstr "Arbeitsplatzbeschreibung"
 
 #. module: hr_employee_benefit_on_job
 #: field:hr.employee.benefit,job_id:0
 msgid "Job"
-msgstr "Poste"
+msgstr "Arbeitsplatz"
 
 #. module: hr_employee_benefit_on_job
 #: model:ir.model,name:hr_employee_benefit_on_job.model_hr_employee_benefit
 msgid "Employee Benefit"
-msgstr "Avantage Social"
+msgstr ""
 
 #. module: hr_employee_benefit_on_job
 #: model:ir.model,name:hr_employee_benefit_on_job.model_hr_payslip
 msgid "Pay Slip"
-msgstr "Bulletin de paie"
+msgstr "Lohnzettel"
 
 #. module: hr_employee_benefit_on_job
 #: model:ir.model,name:hr_employee_benefit_on_job.model_hr_employee_benefit_rate
 msgid "hr.employee.benefit.rate"
-msgstr "hr.employee.benefit.rate"
+msgstr ""
