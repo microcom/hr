@@ -19,27 +19,25 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp import api, models
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools.translate import _
 from datetime import datetime
 strptime = datetime.strptime
 
 
-class HrEmployeeBenefitRate(orm.Model):
+class HrEmployeeBenefitRate(models.Model):
     _inherit = 'hr.employee.benefit.rate'
 
-    def get_all_amount_types(self, cr, uid, context=None):
-        res = super(HrEmployeeBenefitRate, self).get_all_amount_types(
-            cr, uid, context=context)
+    @api.multi
+    def get_all_amount_types(self):
+        res = super(HrEmployeeBenefitRate, self).get_all_amount_types()
 
         res.append(('per_hour', _('Per Worked Hour')))
 
         return res
 
-    def compute_amounts_per_hour(
-        self, cr, uid, ids, wd, context=None
-    ):
+    def compute_amounts_per_hour(self, wd):
         """
         Compute the amounts of benefit that are calculated over worked hours.
         """
@@ -47,7 +45,7 @@ class HrEmployeeBenefitRate(orm.Model):
         wd_to = strptime(wd.date_to, DEFAULT_SERVER_DATE_FORMAT)
         duration = (wd_to - wd_from).days + 1
 
-        for rate in self.browse(cr, uid, ids, context=context):
+        for rate in self.browse():
 
             rate_lines = [
                 line for line in rate.line_ids

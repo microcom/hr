@@ -19,17 +19,17 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp import api, models
 from itertools import chain
 
 
-class HrPayslip(orm.Model):
+class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
 
-    def _search_benefits(self, cr, uid, payslip, context=None):
+    @api.multi
+    def _search_benefits(self, payslip):
 
-        benefits = super(HrPayslip, self)._search_benefits(
-            cr, uid, payslip, context=context)
+        benefits = super(HrPayslip, self)._search_benefits(payslip)
 
         return benefits + list(chain(*[
             job.benefit_line_ids for job in [

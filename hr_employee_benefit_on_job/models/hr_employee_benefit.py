@@ -19,21 +19,22 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import api, fields, models
 
 
-class HrEmployeeBenefit(orm.Model):
+class HrEmployeeBenefit(models.Model):
     _inherit = 'hr.employee.benefit'
 
-    def compute_amounts(self, cr, uid, ids, payslip, context=None):
-        benefits = self.browse(cr, uid, ids, context=context)
+    @api.multi
+    def compute_amounts(self, payslip, context=None):
+        benefits = self.browse(context=context)
 
         other_benefit_ids = [
             b.id for b in benefits if b.amount_type != 'per_hour'
         ]
 
         super(HrEmployeeBenefit, self).compute_amounts(
-            cr, uid, other_benefit_ids, payslip, context=context)
+            other_benefit_ids, payslip)
 
         benefits_per_hour = [
             b for b in benefits if b.amount_type == 'per_hour'
@@ -63,11 +64,9 @@ class HrEmployeeBenefit(orm.Model):
             for wd in worked_days:
                 benefit.rate_id.compute_amounts_per_hour(wd)
 
-    _columns = {
-        'job_id': fields.many2one(
+    job_id = fields.Many2one(
             'hr.job',
             'Job',
             ondelete='cascade',
             select=True
-        ),
-    }
+        )
